@@ -61,6 +61,15 @@ jobs:
     - name: Build with Maven
       run: |
         mvn clean install --file pom.xml -Dmaven.test.skip=true
+    
+    # Store the application artifact
+    - name: Archive WAR package
+      uses: actions/upload-artifact@v2
+      with:
+        name: archive-war
+        path: |
+          target/*.war
+
     - name: Azure authentication
       uses: azure/login@v1
       with:
